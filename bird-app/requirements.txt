@@ -31,7 +31,3 @@ SQLAlchemy-serializer==1.4.1
 typing_extensions==4.8.0
 Werkzeug==3.0.0
 WTForms==3.0.1
-alembic==1.12.0
-aniso8601==9.0.1
-blinker==1.6.2
-
