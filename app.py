@@ -52,26 +52,33 @@ def login():
 
         # Authentication failed, return a JSON response
         return jsonify({'error': 'Invalid credentials'})
-# POST /service-provider
-@app.route('/service-provider', methods=['POST'])
+#@app.route('/service-provider', methods=['POST'])
 def create_service_provider():
     if request.method == 'POST':
         # Get JSON data from the request
         data = request.json
 
-        # Create a new User object (service provider)
-        new_service_provider = ServiceProvider(
-            fullname=data.get('fullname'),
-            skills=data.get('skills'),
-            experience=data.get('experience'),
-            availability=data.get('availability')
-        )
+        try:
+            # Create a new User object (service provider)
+            new_service_provider = ServiceProvider(
+                fullname=data.get('fullname'),
+                skills=data.get('skills'),
+                experience=data.get('experience'),
+                availability=data.get('availability')
+            )
 
-        # Add the new service provider to the database
-        db.session.add(new_service_provider)
-        db.session.commit()
+            # Add the new service provider to the database
+            db.session.add(new_service_provider)
+            db.session.commit()
 
-        return jsonify({'message': 'Service provider created successfully'})
+            # Return a success message
+            return jsonify({'message': 'Service provider created successfully'})
+        except Exception as e:
+            db.session.rollback()  # Rollback the transaction in case of an error
+            return jsonify({'error': str(e)})
+    else:
+        # Handle invalid HTTP methods with a 405 Method Not Allowed response
+        return jsonify({'error': 'Method not allowed'}), 405
     
 # POST /service-request
 @app.route('/service-request', methods=['POST'])

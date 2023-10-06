@@ -1,0 +1,97 @@
+/* Skill Provider Component - Custom Styles */
+.container-fluid {
+  background-color: #f2f2f2; /* Light gray background */
+  color: #333; /* Dark gray text color */
+}
+
+.text-primary {
+  color: #007bff; /* Dark blue for primary text */
+}
+
+.input-group .form-control {
+  background-color: #f2f2f2; /* Light gray input background */
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+  color: #333; /* Dark gray text color */
+}
+
+.input-group .form-control:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+  margin-top: 30px; /* Increased margin */
+  background-color: #333; /* Dark gray background */
+  border: 2px solid #6c757d; /* Dark gray border */
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-header.bg-primary.text-white {
+  background-color: #007bff !important; /* Dark blue header background */
+}
+
+.card-header.bg-secondary.text-white {
+  background-color: #f2f2f2 !important; /* Light gray header background */
+  color: #333; /* Dark gray text color */
+}
+
+.table.table-bordered {
+  border: 2px solid #6c757d; /* Dark gray border for the table */
+  background-color: #333; /* Dark gray table background */
+  color: #333; /* Dark gray text color */
+}
+
+.table.table-bordered th,
+.table.table-bordered td {
+  border: 2px solid #6c757d; /* Dark gray border for table cells */
+  padding: 12px; /* Increased padding */
+  text-align: center; /* Center-aligned text */
+  color: #fff; /* White text color */
+}
+
+.table.table-bordered th {
+  background-color: #6c757d; /* Dark gray table header */
+  color: #fff; /* White text color */
+}
+
+.table.table-bordered tbody tr:nth-child(even) {
+  background-color: #555; /* Dark gray background for even rows */
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px; /* Increased margin */
+  color: #007bff; /* Dark blue text color */
+}
+
+.form-control {
+  background-color: #555; /* Dark gray input background */
+  border: 2px solid #6c757d; /* Dark gray border for inputs */
+  border-radius: 10px;
+  padding: 12px; /* Increased padding */
+  color: #fff; /* White text color */
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #f2f2f2; /* Light gray border on focus */
+  outline: none;
+}
+
+.btn.btn-success {
+  background-color: #f2f2f2; /* Light gray button background */
+  color: #333; /* Dark gray text color */
+  padding: 14px 28px; /* Increased padding */
+  border: 2px solid #6c757d; /* Dark gray border for buttons */
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.btn-success:hover {
+  background-color: #999; /* Slightly darker gray on hover */
+}
