@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import  validates, ValidationError,Schema
-
+import os
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -96,3 +96,7 @@ user_schema = UserSchema()
 service_request_schema = ServiceRequestSchema()
 service_provider_schema = ServiceProviderSchema()
 rating_schema = RatingSchema()
+
+
+db_uri = os.environ.get('DATABASE_URI')
+print("DATABASE_URI:", db_uri)
