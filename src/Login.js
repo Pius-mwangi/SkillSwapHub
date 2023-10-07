@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Login.css';
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Use useNavigate for navigation
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -13,6 +13,16 @@ function Login({ onLogin }) {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleSeekerLogin = () => {
+    // Navigate to the dashboard for seekers
+    navigate('/dashboard');
+  };
+
+  const handleProviderLogin = () => {
+    // Navigate to the SkillProvider page for providers
+    navigate('/skillprovider');
   };
 
   const handleSubmit = (e) => {
@@ -32,11 +42,8 @@ function Login({ onLogin }) {
       .then((response) => {
         if (response.ok) {
           onLogin();
-          if (window.location.pathname === '/dashboard') {
-            navigate('/dashboard');
-          } else if (window.location.pathname === '/skillprovider') {
-            navigate('/skillprovider');
-          }
+          // Use navigate to redirect to the dashboard for seekers
+          navigate('/dashboard');
         } else {
           return response.json().then((errorData) => {
             console.error('Authentication failed:', errorData.error);
@@ -74,8 +81,16 @@ function Login({ onLogin }) {
             required
           />
         </div>
+        <div className="login-options">
+          <button type="button" onClick={handleSeekerLogin}>
+            Login as Seeker
+          </button>
+          <button type="button" onClick={handleProviderLogin}>
+            Login as Provider
+          </button>
+        </div>
         <p>Hint: You can use any username and password for testing purposes.</p>
-        <button type="submit">Login</button>
+       
       </form>
     </div>
   );
