@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use useNavigate for navigation
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -32,8 +32,11 @@ function Login({ onLogin }) {
       .then((response) => {
         if (response.ok) {
           onLogin();
-          // Use navigate to redirect to the dashboard
-          navigate('/dashboard');
+          if (window.location.pathname === '/dashboard') {
+            navigate('/dashboard');
+          } else if (window.location.pathname === '/skillprovider') {
+            navigate('/skillprovider');
+          }
         } else {
           return response.json().then((errorData) => {
             console.error('Authentication failed:', errorData.error);
