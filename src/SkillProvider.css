@@ -1,0 +1,107 @@
+/* 1. Set the background color of the entire container to a light gray (#f2f2f2). */
+.container-fluid {
+    background-color: #f2f2f2;
+  }
+  
+  /* 2. Style the main dashboard title */
+  h2.text-primary {
+    color: #007bff;
+    font-size: 24px;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  /* 3. Style the search input field within the input group */
+  .input-group input[type="text"] {
+    background-color: #E6E6E6; /* Sample colorful background */
+    border-color: #007bff;
+    border-radius: 5px;
+    placeholder-color: #ccc;
+    font-size: 16px;
+  }
+  
+  /* 4. Style the search button within the input group */
+  .input-group-append button {
+    background-color: #007bff;
+    color: #000; /* Sample text color */
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* 5. Style the service requests table */
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #ccc;
+    background-color: #F0F0F0; /* Sample colorful background */
+  }
+  
+  /* 6. Style the table header cells */
+  thead th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* 7. Style the table rows alternately with a light background color */
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* 8. Style the table data cells */
+  td {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* 9. Style the card for creating a new service provider */
+  .card.new-service-provider {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #6c757d;
+    color: #fff;
+  }
+  
+  /* 10. Style the card title */
+  .card.new-service-provider .card-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  /* 11. Style the form fields for creating a new service provider */
+  .card.new-service-provider .form-control {
+    background-color: #fff;
+    border-color: #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 5px;
+  }
+  
+  /* 12. Style the "Create Service Provider" button */
+  .card.new-service-provider button.btn-success {
+    background-color: #28a745; /* Sample success color */
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px 10px;
+    margin: 10px;
+  }
+  
+  /* 13. Implement responsive design */
+  @media (max-width: 768px) {
+    /* Add responsive styles here */
+  }
+  
+  .input-group-append button:hover,
+  .input-group-append button:focus {
+    background-color: #0056b3; /* Change background color on hover and focus */
+    color: #fff; /* Change text color on hover and focus */
+  }
+  
+  /* Style for the "Create Service Provider" button on hover and focus */
+  .card.new-service-provider button.btn-success:hover,
+  .card.new-service-provider button.btn-success:focus {
+    background-color: #1e7e34; /* Change background color on hover and focus */
+    color: #fff; /* Change text color on hover and focus */
+  }
+  
