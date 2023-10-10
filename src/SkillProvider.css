@@ -92,16 +92,31 @@
     /* Add responsive styles here */
   }
   
-  .input-group-append button:hover,
-  .input-group-append button:focus {
-    background-color: #0056b3; /* Change background color on hover and focus */
-    color: #fff; /* Change text color on hover and focus */
+  .card.new-service-provider form input[type="text"],
+  .card.new-service-provider form button.btn-success {
+    background-color: #ffc107; /* Background color (e.g., yellow) */
+    border-color: #ffc107; /* Border color (e.g., yellow) */
+    color: #333; /* Text color (e.g., dark gray) */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 16px;
+    padding: 12px 16px; /* Padding for spacing */
+    margin: 8px 0; /* Margin for spacing between fields */
+    width: 100%; /* Make the form fields 100% width of the container */
   }
   
-  /* Style for the "Create Service Provider" button on hover and focus */
-  .card.new-service-provider button.btn-success:hover,
-  .card.new-service-provider button.btn-success:focus {
-    background-color: #1e7e34; /* Change background color on hover and focus */
-    color: #fff; /* Change text color on hover and focus */
+  /* Style the "Create Service Provider" button */
+  .card.new-service-provider form button.btn-success {
+    background-color: #28a745; /* Background color (e.g., green) */
+    color: #fff; /* Text color (white) */
+    font-size: 18px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
   }
   
+  /* Hover and focus styles for form input and button */
+  .card.new-service-provider form input[type="text"]:hover,
+  .card.new-service-provider form input[type="text"]:focus,
+  .card.new-service-provider form button.btn-success:hover,
+  .card.new-service-provider form button.btn-success:focus {
+    background-color: #ffca28; /* Change background color on hover and focus */
+    border-color: #ffca28; /* Change border color on hover and focus */
+  }

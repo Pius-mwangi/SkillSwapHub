@@ -126,12 +126,12 @@ function SkillSeekerDashboard() {
             <span className="sidebar-icon">📞</span> CONTACT US
           </div>
         </li>
-        {/* Add more sidebar options here */}
+       
       </ul>
     </div>
       <div className="content">
         <form onSubmit={handleSubmit} className="service-request-form">
-          {/* Your form inputs go here */}
+        
         </form>
 
         <div className="table-container">

@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# SkillSwap Hub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SkillSwap Hub is a web-based platform that connects skill seekers and skill providers. It enables users to request services, find service providers, and facilitate skill exchanges. This README provides an overview of the project, its functionality, and how to set it up and run it.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Frontend](#frontend)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-### `npm start`
+## Project Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+SkillSwap Hub aims to connect individuals looking for specific skills or services with individuals who can provide those skills. The project includes both frontend and backend components.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The frontend is built with React, providing a user-friendly interface for skill seekers to search for service providers, make service requests, and manage their profiles. The backend is implemented with Flask, serving as an API that handles user authentication, skill requests, and service provider profiles.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- User authentication (login and registration)
+- Skill provider profiles with details like skills, experience, and availability
+- Skill request creation and management
+- Searching for service providers based on various criteria
+- Integration with a PostgreSQL database to store user data
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run SkillSwap Hub locally, CLICK the link on the right side when you ope the repo in github 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Endpoints
+The backend provides the following API endpoints:
 
-### `npm run eject`
+GET /users: Get a list of all users.
+GET /users/<int:id>: Get user details by ID.
+POST /login: User login.
+POST /service-provider: Create a new service provider profile.
+POST /service-request: Create a new service request.
+GET /service-providers: Get a list of all service providers.
+GET /service-providers/<int:id>: Get service provider details by ID.
+GET /service-requests: Get a list of all service requests.
+PATCH /service-requests/<int:id>: Update a service request.
+DELETE /service-requests/<int:id>: Delete a service request.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Frontend
+The frontend is built using React and contains various components and routes to manage user interactions. It provides an intuitive user interface for skill seekers to navigate the platform, search for service providers, and create service requests.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technologies Used
+Flask: Backend web framework
+React: Frontend JavaScript library
+SQLAlchemy: Python SQL toolkit and Object-Relational Mapping (ORM)
+PostgreSQL: Relational database management system
+Flask-WTF: Form handling in Flask
+React Router: Client-side routing for React applicati
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the MIT License.
+## Author
+Piouware 
