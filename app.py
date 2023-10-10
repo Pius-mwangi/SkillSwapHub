@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app)  
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'your_secret_key'  # Replace with a secret key for session management
+
 
 migrate = Migrate(app, db)
 
@@ -132,7 +132,7 @@ def get_user(id):
             'description': request.description,
             'location': request.location,
             'status': request.status,
-            'rating': request.rating  # You may need to adjust this based on your Rating model
+            'rating': request.rating  
         })
 
     user_data = {

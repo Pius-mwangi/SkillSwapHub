@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <h1>SkillSwap Hub</h1>
+        
         <Routes>
           {/* Route for the landing page */}
           <Route

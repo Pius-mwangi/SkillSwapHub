@@ -71,8 +71,7 @@ class UserSchema(Schema):
     def validate_email(self, value):
         if not value:
             raise ValidationError('Email is required')
-        # You can add more complex email validation logic if needed
-
+        
     # Add validation for the 'password' field
     @validates('password')
     def validate_password(self, value):
