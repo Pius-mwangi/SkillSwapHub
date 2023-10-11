@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './SkillProvider.css';
 
 function SkillProvider() {
-  const [serviceRequests, setServiceRequests] = useState([]);
-  const [search, setSearch] = useState('');
   const [formData, setFormData] = useState({
     fullname: '',
     skills: '',
     experience: '',
     availability: '',
   });
+
+  const [serviceRequests, setServiceRequests] = useState([]);
 
   useEffect(() => {
     // Fetch service requests from the backend
@@ -22,10 +22,6 @@ function SkillProvider() {
         console.error('An error occurred:', error);
       });
   }, []);
-
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-  };
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -54,7 +50,7 @@ function SkillProvider() {
         if (response.ok) {
           alert('Service provider created successfully');
           setFormData({
-            fullname: '', // Reset form fields
+            fullname: '',
             skills: '',
             experience: '',
             availability: '',
@@ -68,125 +64,104 @@ function SkillProvider() {
       });
   };
 
-  const filteredServiceRequests = serviceRequests.filter((request) =>
-    request.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleDeleteRequest = (id) => {
+    // Send a DELETE request to the backend to delete a service request
+    fetch(`https://skillswap-0fqo.onrender.com/service-requests/${id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Service request deleted successfully');
+          // Update the service requests list after deletion
+          setServiceRequests(serviceRequests.filter((request) => request.id !== id));
+        } else {
+          alert('Service request deletion failed');
+        }
+      })
+      .catch((error) => {
+        console.error('An error occurred:', error);
+      });
+  };
 
   return (
-    <div className="container-fluid mt-5" style={{ backgroundColor: '#f2f2f2' }}>
-      <h2 className="text-primary">Skill Provider Dashboard</h2>
-      
-      <div className="row">
-        <div className="col-md-6">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by Title..."
-              value={search}
-              onChange={handleChange}
-            />
-            <div className="input-group-append">
-              <button className="btn btn-primary" type="button">
-                Search
-              </button>
-            </div>
+    <div className="skill-provider-container">
+      <h2 className="skill-provider-heading">Skill Provider Dashboard</h2>
+      <div className="form-container">
+        <div className="form-section">
+          <div className="form-header">
+            <h3>Create a New Service Provider</h3>
           </div>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="fullname">Full Name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                value={formData.fullname}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="skills">Skills</label>
+              <input
+                type="text"
+                id="skills"
+                name="skills"
+                value={formData.skills}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="experience">Experience</label>
+              <input
+                type="text"
+                id="experience"
+                name="experience"
+                value={formData.experience}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="availability">Availability</label>
+              <input
+                type="text"
+                id="availability"
+                name="availability"
+                value={formData.availability}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <button type="submit" className="submit-button">
+              Create Service Provider
+            </button>
+          </form>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header" style={{ backgroundColor: '#007bff', color: '#fff' }}>
-              Service Requests
+
+      <div className="service-requests-container">
+        <h3 className="service-requests-heading">Service Requests</h3>
+        <div className="card-container">
+          {serviceRequests.map((request) => (
+            <div className="card" key={request.id}>
+              <h4 className="card-title">{request.title}</h4>
+              <p className="card-description">Description: {request.description}</p>
+              <p className="card-location">Location: {request.location}</p>
+              <p className="card-status">Status: {request.status}</p>
+              <p className="card-user-id">User ID: {request.user_id}</p>
+              <button
+                type="button"
+                className="delete-button"
+                onClick={() => handleDeleteRequest(request.id)}
+              >
+                Delete
+              </button>
             </div>
-            <div className="card-body">
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                    <th>User ID</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredServiceRequests.map((request) => (
-                    <tr key={request.id}>
-                      <td>{request.title}</td>
-                      <td>{request.description}</td>
-                      <td>{request.location}</td>
-                      <td>{request.status}</td>
-                      <td>{request.user_id}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header" style={{ backgroundColor: '#6c757d', color: '#fff' }}>
-              Create a New Service Provider
-            </div>
-            <div className="card-body">
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="fullname">Full Name</label>
-                  <input
-                    type="text"
-                    id="fullname"
-                    name="fullname"
-                    value={formData.fullname}
-                    onChange={handleFormChange}
-                    required
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="skills">Skills</label>
-                  <input
-                    type="text"
-                    id="skills"
-                    name="skills"
-                    value={formData.skills}
-                    onChange={handleFormChange}
-                    required
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="experience">Experience</label>
-                  <input
-                    type="text"
-                    id="experience"
-                    name="experience"
-                    value={formData.experience}
-                    onChange={handleFormChange}
-                    required
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="availability">Availability</label>
-                  <input
-                    type="text"
-                    id="availability"
-                    name="availability"
-                    value={formData.availability}
-                    onChange={handleFormChange}
-                    required
-                    className="form-control"
-                  />
-                </div>
-                <button type="submit" className="btn btn-success">
-                  Create Service Provider
-                </button>
-              </form>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

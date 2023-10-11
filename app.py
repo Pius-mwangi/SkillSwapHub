@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request, session, make_response
-
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_wtf import FlaskForm
@@ -8,28 +7,20 @@ from wtforms.validators import DataRequired, Length, NumberRange
 from models import db, User, ServiceProvider, ServiceRequest
 import os
 
-
-
-
 app = Flask(__name__)
-CORS(app)  
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
 migrate = Migrate(app, db)
-
 db.init_app(app)
 
+# Define a form for creating service providers
 class CreateServiceProviderForm(FlaskForm):
     fullname = StringField('Full Name', validators=[DataRequired()])
     skills = StringField('Skills', validators=[DataRequired(), Length(min=3)])
     experience = IntegerField('Experience (years)', validators=[NumberRange(min=0)])
     availability = StringField('Availability', validators=[DataRequired()])
-
-@app.route('/')
-def home():
-    return ''
 
 # POST /login
 @app.route('/login', methods=['POST'])
@@ -52,34 +43,40 @@ def login():
 
         # Authentication failed, return a JSON response
         return jsonify({'error': 'Invalid credentials'})
-#@app.route('/service-provider', methods=['POST'])
+
+# POST /service-provider (Create Service Provider)
+@app.route('/service-provider', methods=['POST'])
 def create_service_provider():
     if request.method == 'POST':
-        # Get JSON data from the request
-        data = request.json
+        form = CreateServiceProviderForm(request.form)
 
-        try:
-            # Create a new User object (service provider)
-            new_service_provider = ServiceProvider(
-                fullname=data.get('fullname'),
-                skills=data.get('skills'),
-                experience=data.get('experience'),
-                availability=data.get('availability')
-            )
+        if form.validate():
+            # Get data from the validated form
+            fullname = form.fullname.data
+            skills = form.skills.data
+            experience = form.experience.data
+            availability = form.availability.data
 
-            # Add the new service provider to the database
-            db.session.add(new_service_provider)
-            db.session.commit()
+            try:
+                # Create a new service provider
+                new_service_provider = ServiceProvider(
+                    fullname=fullname,
+                    skills=skills,
+                    experience=experience,
+                    availability=availability
+                )
 
-            # Return a success message
-            return jsonify({'message': 'Service provider created successfully'})
-        except Exception as e:
-            db.session.rollback()  # Rollback the transaction in case of an error
-            return jsonify({'error': str(e)})
-    else:
-        # Handle invalid HTTP methods with a 405 Method Not Allowed response
-        return jsonify({'error': 'Method not allowed'}), 405
-    
+                # Add the new service provider to the database
+                db.session.add(new_service_provider)
+                db.session.commit()
+
+                return jsonify({'message': 'Service provider created successfully'})
+            except Exception as e:
+                db.session.rollback()
+                return jsonify({'error': str(e)})
+        else:
+            return jsonify({'error': 'Form validation failed'})
+
 # POST /service-request
 @app.route('/service-request', methods=['POST'])
 def create_service_request():
@@ -101,8 +98,6 @@ def create_service_request():
         db.session.commit()
 
         return jsonify({'message': 'Service request created successfully'})
-
-
 
 # GET /users
 @app.route('/users', methods=['GET'])

@@ -1,11 +1,13 @@
+// Login.js
+
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import './Login.css'; // Import the CSS file
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use useNavigate for navigation
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -16,12 +18,10 @@ function Login({ onLogin }) {
   };
 
   const handleSeekerLogin = () => {
-    // Navigate to the dashboard for seekers
     navigate('/dashboard');
   };
 
   const handleProviderLogin = () => {
-    // Navigate to the SkillProvider page for providers
     navigate('/skillprovider');
   };
 
@@ -42,7 +42,6 @@ function Login({ onLogin }) {
       .then((response) => {
         if (response.ok) {
           onLogin();
-          // Use navigate to redirect to the dashboard for seekers
           navigate('/dashboard');
         } else {
           return response.json().then((errorData) => {
@@ -82,15 +81,14 @@ function Login({ onLogin }) {
           />
         </div>
         <div className="login-options">
-          <button type="button" onClick={handleSeekerLogin}>
+          <button className="seeker-button" type="button" onClick={handleSeekerLogin}>
             Login as Seeker
           </button>
-          <button type="button" onClick={handleProviderLogin}>
+          <button className="provider-button" type="button" onClick={handleProviderLogin}>
             Login as Provider
           </button>
         </div>
-        <p>Hint: You can use any username and password for testing purposes.</p>
-       
+        <p className="hint">Hint: You can use any username and password for testing purposes.</p>
       </form>
     </div>
   );
